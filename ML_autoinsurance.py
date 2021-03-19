@@ -6,7 +6,6 @@ from sklearn.metrics import accuracy_score, precision_score, f1_score
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.svm import SVC
 from xgboost import XGBClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
@@ -68,8 +67,7 @@ X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=
 
 # Model selection : supervised classification methods
 models = []
-models.append(('SVM', SVC(gamma='auto')))
-models.append(('XGboost', XGBClassifier(use_label_encoder=False)))
+models.append(('XGboost', XGBClassifier()))
 models.append(('LogisticRegression', LogisticRegression(solver='liblinear', multi_class='ovr')))
 models.append(('DecisionTree', DecisionTreeClassifier()))
 models.append(('RandomForest', RandomForestClassifier()))
@@ -89,7 +87,7 @@ for i_name, i_model in models:
     confusion_display = ConfusionMatrixDisplay(confusion).plot()
     plt.title(i_name)
     
-#Best method is Random Forest (accuracy of O.81 and precision 0.77)
+# Best method is Random Forest based on confusion matrix and metrics values
 
 
 ######################## PART 3 : PREDICTIONS ############################
@@ -108,4 +106,4 @@ predictions = model.predict(X_test)
 
 # Export to csv file
 results_export = pd.DataFrame({'INDEX': test_data['INDEX'],'TARGET_FLAG': predictions})
-results_export.to_csv('test_prediction.csv', index=False) 
+results_export.to_csv('test_predictions.csv', index=False) 
