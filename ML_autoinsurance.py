@@ -32,11 +32,11 @@ def datapreprocess(data):
         data[i] = data[i].astype(float)      
     
     # Filling missing values
-    for i in numerical_features+dollars_features:
-        if data[i].isnull().sum() != 0:
+    for i in numerical_features+dollars_features :
+        if data[i].isnull().sum() != 0 :
             data[i] = data[i].fillna(data[i].median())  #NaN values are replaced by the median value of the feature      
     for i in binary_features+categorical_features :
-        if data[i].isnull().sum() != 0:
+        if data[i].isnull().sum() != 0 :
             data[i] = data[i].fillna(data[i].mode()[0]) #NaN values are replaced by the most represented value of the feature           
     
     # Binarization for variables yes/no and male/female
