@@ -1,4 +1,4 @@
- #Technical Report
+ # Technical Report
  
  ## Technical choices justifications
  
