@@ -1,5 +1,5 @@
 # Machine-Lerning-for-auto-insurance
-Machine learning for predections on auto insurance datasets
+Machine learning for predictions on auto insurance datasets
 
 ### Packages
 
