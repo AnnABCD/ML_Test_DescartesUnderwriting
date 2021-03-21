@@ -28,5 +28,6 @@ I replaced the missing values with the median value for numerical features, and 
  * __Feature selection__: It could be useful to make a feature importance analysis in order to get rid off of unrelevant features.
 
  #### Model selection
+ * __Metrics__: The choice of the metrics depends on the aim of the study so more insights about the general goals could help choose the most appropriate model.
  * __Cross-validation__: For model selection, I decided to separate 20% of the training data for evaluation, but I could have use cross validation with cross-val-score function wich gives more accurate results about performance as the performances of the different models are evaluated multiple times on different subsets of the data. I didn't use this function because it requires more computation time and it allows to compute only one metric whereas I wanted to compare the different metrics.
  * __Parameters optimization__: For better parameter optimization I could use grid searching.
