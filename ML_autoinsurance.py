@@ -47,8 +47,8 @@ def datapreprocess(data):
           data[i]=labelencoder.fit_transform(data[i])       
     
     # Removing non necessary columns
-    data.drop(['TARGET_AMT'],axis='columns',inplace=True) 
-    data.drop(['INDEX'],axis='columns',inplace=True)
+    data.drop(['TARGET_AMT'],axis='columns',inplace=True) # empty in test dataset
+    data.drop(['INDEX'],axis='columns',inplace=True) # the index doesn't impact predictions
         
 
 # Pre-processing training dataset and displaying resulting data
@@ -82,12 +82,29 @@ for i_name, i_model in models:
     precision = precision_score(Y_validation, Y_pred)
     f1 = f1_score(Y_validation, Y_pred)
     print('%s: accuracy %f precision %f f1 %f' % (i_name, accuracy, precision, f1))
-    # Confusion matrix
-    confusion = confusion_matrix(Y_validation, Y_pred)
-    confusion_display = ConfusionMatrixDisplay(confusion).plot()
-    plt.title(i_name)
     
 # Best method is Random Forest based on confusion matrix and metrics values
+
+
+######################## PART 3 : MODEL ASSESMENT ############################
+    
+# Parameters for Random Forest Classifier
+n_estinators_list=np.arange(200, 1000, 200)
+for i in n_estinators_list:
+    model = RandomForestClassifier(n_estimators=i)
+    model.fit(X_train, Y_train)
+    Y_pred = model.predict(X_validation)
+    accuracy = accuracy_score(Y_validation, Y_pred)
+    print('Random Forest with n_estimators=%f: accuracy %f' % (i, accuracy))
+
+# Metrics for n-estimators=800
+precision = precision_score(Y_validation, Y_pred)
+f1 = f1_score(Y_validation, Y_pred)
+print('Random Forest (n_estimators=800): precision %f f1 %f' % (precision, f1))
+# Confusion matrix
+confusion = confusion_matrix(Y_validation, Y_pred)
+confusion_display = ConfusionMatrixDisplay(confusion).plot()
+plt.title('Random Forest : Confusion matrix')
 
 
 ######################## PART 3 : PREDICTIONS ############################
@@ -98,7 +115,7 @@ datapreprocess(testdatacopy)
 X_test = testdatacopy.drop(['TARGET_FLAG'],axis=1) 
 
 # Model traning with entire training dataset (X, Y)
-model = RandomForestClassifier(n_estimators=1000)
+model = RandomForestClassifier(n_estimators=800)
 model.fit(X, Y)
 
 # Prediction
