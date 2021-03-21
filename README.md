@@ -6,6 +6,6 @@ The aim of the project is to write a code in python that should be able to make 
 The code can be found in *ML_autoinsurance.py*. The predictions for *TARGET_FLAG* of the *test_auto* datset is in *test_predictions.csv*. In order that my code is not too heavy, I prefered to put my technical choices justifications and possible improvements in a report file *report.md*.
 
 ### Packages
-To be run the code need the following packages to be installed : matplotlib, pandas, sklearn, xgboost.
+To be run the code need the following packages to be installed : numpy, matplotlib, pandas, sklearn, xgboost.
 
 
