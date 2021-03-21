@@ -37,7 +37,12 @@ def datapreprocess(data):
             data[i] = data[i].fillna(data[i].median())  #NaN values are replaced by the median value of the feature      
     for i in binary_features+categorical_features :
         if data[i].isnull().sum() != 0 :
-            data[i] = data[i].fillna(data[i].mode()[0]) #NaN values are replaced by the most represented value of the feature           
+            data[i] = data[i].fillna(data[i].mode()[0]) #NaN values are replaced by the most represented value of the feature
+            
+    # Feature scaling
+    for i in numerical_features+dollars_features :
+            scaler = StandardScaler()
+            data[i] = scaler.fit_transform(data[[i]])
     
     # Binarization for variables yes/no and male/female
     data.replace({"yes":1,"no":0,"Yes":1,"No":0,"z_No":0,"M":0,"z_F":1}, inplace=True)          
