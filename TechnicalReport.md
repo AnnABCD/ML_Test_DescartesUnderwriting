@@ -2,7 +2,7 @@
  
  The algorithm is divided in 4 parts : Data pre-processing, Model selection, Model assesment and Predictions.
  
- ## Technical choices justifications
+ ## Technical choices
  
  #### Data pre-processing
  
