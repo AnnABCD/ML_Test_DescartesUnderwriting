@@ -21,7 +21,6 @@ I replaced the missing values with the median value for numerical features, and 
  According to the confusion matrix computed for Random Forest classification, the model is good at predicting 0s predicted 0s b but bad at predicting 1s. There are some methods that could help improving the algorithm reliability.
  
   #### Data pre-processing
- * __Standardization__: I could have used StandardScaled to standardize the numerical data.
  * __Missing values__: I decided to fill the missing values but another strategy could be to remove the lines with missing value or even consider missing values as a new category. 
  *  __Categorical features encoding__: Categorical features can also be encoded with one hot encoding, creating a new column for each category.
  * __Imbalance data__ : The trainaing data is imbalanced (more 0s than 1s for target flag). Different strategies can help overcome this issue. Undersampling : removing lines with 0s. Oversampling: adding ls by using existing ones.
